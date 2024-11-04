@@ -8,12 +8,14 @@ public class PlayerMovement : MonoBehaviour, IHealth
     private Vector3 moveDirection;
     private Vector3 aimDirection;
     private PlayerInput playerInput;
+    private Vector2 mousePos;
 
     public Transform _weaponAnchor;
     public Transform _visualTranform;
     public PlayerStats _stats;
     public DeviceType _deviceType;
     public LayerMask _layerMask;
+    public Transform _cameraOrigin;
     public Camera _camera;
 
     private void Start()
@@ -28,6 +30,11 @@ public class PlayerMovement : MonoBehaviour, IHealth
     }
 
     private void Update()
+    {        
+        
+    }
+
+    private void FixedUpdate()
     {
         rb.AddForce(moveDirection * _stats._Speed, ForceMode.Impulse);
     }
@@ -39,25 +46,29 @@ public class PlayerMovement : MonoBehaviour, IHealth
     }
 
     public void GetAim(InputAction.CallbackContext context)
-    {
-        Vector2 mousePos = context.ReadValue<Vector2>();
-        Ray aimOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
-
+    {       
         if (playerInput.currentControlScheme == "Keyboard&Mouse")
         {
+            Ray aimOrigin = _camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit rayHit;
-            if(Physics.Raycast(aimOrigin, out rayHit,20f, _layerMask))
+            if(Physics.Raycast(aimOrigin, out rayHit, 100f, _layerMask))
             {
-                aimDirection = new Vector3(rayHit.point.x, 0, rayHit.point.z);
+                Vector3 point = new Vector3(rayHit.point.x, 0, rayHit.point.z);
+                aimDirection = point - transform.position;
             }
+
+            _cameraOrigin.localPosition = aimDirection * 0.1f;
         }
         else if(playerInput.currentControlScheme == "Gamepad")
         {
+            if (context.ReadValue<Vector2>().magnitude > 0.4f)
+                mousePos = context.ReadValue<Vector2>();
+
             aimDirection = new Vector3(mousePos.x, 0, mousePos.y).normalized;
+            _cameraOrigin.localPosition = aimDirection * 0.5f;
         }
 
-        //_visualTranform.rotation = Quaternion.FromToRotation(_visualTranform.transform.up, aimDirection);
-        _visualTranform.rotation = Quaternion.LookRotation(aimDirection);
+        _visualTranform.rotation = Quaternion.LookRotation(aimDirection);        
     }
 
     public void GetShootAction(InputAction.CallbackContext context) 
