@@ -8,7 +8,6 @@ public class WeaponSpawner : MonoBehaviour
     public Transform weaponVisualTransformParent;
 
     public Weapon tempWeaponSpawn;
-    public WeaponVisual tempWeaponVisual;
 
     private float firstSpawnDelay;
     private void Start()
@@ -29,18 +28,19 @@ public class WeaponSpawner : MonoBehaviour
         else 
             yield return new WaitForSeconds(spawnWeaponTime);
 
-        tempWeaponSpawn = LevelManager.Instance.weaponInMap[Random.Range(0, LevelManager.Instance.weaponInMap.Count)];
-        tempWeaponVisual = Instantiate(tempWeaponSpawn.weaponVisual, weaponVisualTransformParent);
+        tempWeaponSpawn = Instantiate(LevelManager.Instance.weaponInMap[Random.Range(0, LevelManager.Instance.weaponInMap.Count)], weaponVisualTransformParent);
+        tempWeaponSpawn.enabled = false;
+        //tempWeaponVisual = Instantiate(tempWeaponSpawn.weaponVisual, weaponVisualTransformParent);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            if (other.TryGetComponent<PlayerMovement>(out PlayerMovement pm))
+                pm.Equip(tempWeaponSpawn);
             //If (playerWeaon == null)
             //   PlayerWeapon = weapon;
-            
-            Destroy(tempWeaponVisual.gameObject);
             StartCoroutine(SpawnWeapon(false));
         }
     }

@@ -1404,7 +1404,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d913b45847bc8c0468e9e105b90f15bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponAnchor: {fileID: 0}
+  _weapon: {fileID: 0}
+  _weaponAnchor: {fileID: 7766274600354250719}
   _visualTranform: {fileID: 6869541881847234840}
   _stats: {fileID: 11400000, guid: 95aab67c1e4046e43bb6d5d418a29a2d, type: 2}
   _deviceType: 3
@@ -1414,6 +1415,7 @@ MonoBehaviour:
   _cameraOrigin: {fileID: 1972070244782056400}
   _camera: {fileID: 4310032353779158728}
   _animator: {fileID: 4807577267261419298}
+  basicPistol: {fileID: 6182154854610323338, guid: fac31cd04d5339a4d93a57ee8ed6f626, type: 3}
 --- !u!1 &3361744817159100331
 GameObject:
   m_ObjectHideFlags: 0

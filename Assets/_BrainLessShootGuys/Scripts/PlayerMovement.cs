@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
     private PlayerInput playerInput;
     private Vector2 mousePos;
 
+    public Weapon _weapon;
     public Transform _weaponAnchor;
     public Transform _visualTranform;
     public PlayerStats _stats;
@@ -19,6 +20,8 @@ public class PlayerMovement : MonoBehaviour, IHealth
     public Transform _cameraOrigin;
     public Camera _camera;
     public Animator _animator;
+    public Weapon basicPistol;
+
 
     private void Start()
     {
@@ -29,6 +32,8 @@ public class PlayerMovement : MonoBehaviour, IHealth
         {
             _stats.Init();
         }
+        
+        Equip(basicPistol);
     }
 
     private void Update()
@@ -118,9 +123,11 @@ public class PlayerMovement : MonoBehaviour, IHealth
     }
 
     #region equipements
-    void Equip()
+    public void Equip(Weapon wpn)
     {
-
+        _weapon = wpn;
+        _weapon.enabled = true;
+        _weapon.transform.SetParent(_weaponAnchor);
     }
 
     void UnEquip() 
