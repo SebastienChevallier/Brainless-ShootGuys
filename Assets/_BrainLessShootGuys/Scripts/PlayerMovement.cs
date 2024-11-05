@@ -1,3 +1,4 @@
+using Cinemachine.Utility;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -44,6 +45,11 @@ public class PlayerMovement : MonoBehaviour, IHealth
     {
         Vector3 tempVec = context.ReadValue<Vector2>();
         moveDirection = new Vector3(tempVec.x, 0, tempVec.y).normalized;
+
+        if(context.canceled)
+        {            
+            rb.linearVelocity = Vector3.zero;
+        }
     }
 
     public void GetAim(InputAction.CallbackContext context)
@@ -55,7 +61,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
             if(Physics.Raycast(aimOrigin, out rayHit, 100f, _layerMask))
             {
                 Vector3 point = new Vector3(rayHit.point.x, 0, rayHit.point.z);
-                aimDirection = point - transform.position;
+                aimDirection = (point - transform.position).normalized;
             }
 
             _cameraOrigin.localPosition = aimDirection * 0.1f;
@@ -74,15 +80,19 @@ public class PlayerMovement : MonoBehaviour, IHealth
 
     private void UpdateAnimatorParameters()
     {
-        // Calculer la rotation pour aligner l'axe Z sur la direction de visée
-        Quaternion aimRotation = Quaternion.LookRotation(aimDirection, Vector3.up);
+        Vector2 playerDir = new Vector2(_visualTranform.forward.x, _visualTranform.forward.z);
+        float angleDiff = Vector2.SignedAngle(Vector2.up, playerDir);
+        float radians = -angleDiff * Mathf.Deg2Rad;
 
-        // Transformer la direction de déplacement en utilisant la rotation de visée comme référence
-        Vector3 relativeMoveDirection = aimRotation * moveDirection;
+        float sin = Mathf.Sin(radians);
+        float cos = Mathf.Cos(radians);
+        float tx = moveDirection.x;
+        float ty = moveDirection.z;
 
-        // Assigner Move_X et Move_Y pour piloter le Blend Tree
-        _animator.SetFloat("Aim_X", relativeMoveDirection.x);
-        _animator.SetFloat("Aim_Y", relativeMoveDirection.z);
+        Vector2 final = new Vector2(cos * tx - sin * ty, sin * tx + cos * ty);
+
+        _animator.SetFloat("Aim_X", final.x);
+        _animator.SetFloat("Aim_Y", final.y);
     }
 
     public void GetShootAction(InputAction.CallbackContext context) 
@@ -95,6 +105,18 @@ public class PlayerMovement : MonoBehaviour, IHealth
 
     }
 
+    public void Dammage(float dmg)
+    {
+        if(dmg < _stats._CurrentHealth)
+        {
+            _stats._CurrentHealth -= dmg;
+        }
+        else
+        {
+            //Fin de la manche
+        }
+    }
+
     #region equipements
     void Equip()
     {
@@ -105,6 +127,8 @@ public class PlayerMovement : MonoBehaviour, IHealth
     {
 
     }
+
+    
 
     #endregion
 }
