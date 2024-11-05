@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
     public LayerMask _layerMask;
     public Transform _cameraOrigin;
     public Camera _camera;
+    public Animator _animator;
 
     private void Start()
     {
@@ -30,13 +31,13 @@ public class PlayerMovement : MonoBehaviour, IHealth
     }
 
     private void Update()
-    {        
-        
+    {
+        UpdateAnimatorParameters();
     }
 
     private void FixedUpdate()
     {
-        rb.AddForce(moveDirection * _stats._Speed, ForceMode.Impulse);
+        rb.AddForce(moveDirection * _stats._Speed * Time.deltaTime, ForceMode.Impulse);
     }
 
     public void GetMoveDirection(InputAction.CallbackContext context)
@@ -69,6 +70,19 @@ public class PlayerMovement : MonoBehaviour, IHealth
         }
 
         _visualTranform.rotation = Quaternion.LookRotation(aimDirection);        
+    }
+
+    private void UpdateAnimatorParameters()
+    {
+        // Calculer la rotation pour aligner l'axe Z sur la direction de visée
+        Quaternion aimRotation = Quaternion.LookRotation(aimDirection, Vector3.up);
+
+        // Transformer la direction de déplacement en utilisant la rotation de visée comme référence
+        Vector3 relativeMoveDirection = aimRotation * moveDirection;
+
+        // Assigner Move_X et Move_Y pour piloter le Blend Tree
+        _animator.SetFloat("Aim_X", relativeMoveDirection.x);
+        _animator.SetFloat("Aim_Y", relativeMoveDirection.z);
     }
 
     public void GetShootAction(InputAction.CallbackContext context) 
