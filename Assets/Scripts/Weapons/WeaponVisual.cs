@@ -1,7 +1,7 @@
 using UnityEngine;
-public class WeaponVisual : MonoBehaviour
+public class  WeaponVisual : MonoBehaviour
 {
-    ParticleSystem shootParticles;
+    public ParticleSystem shootParticles;
     public void OnShoot()
     {
         shootParticles.Play();

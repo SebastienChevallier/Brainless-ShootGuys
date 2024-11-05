@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -6,15 +7,24 @@ public class Weapon : MonoBehaviour
     public WeaponVisual weaponVisual;
     public ActifSpell actifSpell;
     public WeaponType weaponType;
-    public Transform visualParent;
+    public Transform weaponVisualParent;
+    #region test
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Space)) {
+            Shoot();
+        }
+    }
+    #endregion
 
     public virtual void Init()
     {
-        actifSpell.Init(this);
+        //actifSpell.Init(this);
         weaponType.Init(this);
     }
 
-    public void Shoot() { 
+    public void Shoot() {
         weaponType.OnShoot();
         weaponVisual.OnShoot();
     }
