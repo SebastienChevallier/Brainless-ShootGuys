@@ -1,13 +1,15 @@
+using BaseTemplate.Behaviours;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : MonoSingleton<LevelManager>
 {
     public List<WeaponVisual> weaponVisuals;
     public List<WeaponType> weaponTypes;
     public List<ActifSpell> actifSpells;
     [Space(10)]
     public List<Weapon> weaponInMap = new();
+    public List<WeaponSpawner> weaponSpawners;
     //public List<WeaponSpawner> allweaponSpawner;
     public int numberOfWeapon;
     public Weapon WeaponTrunk;
@@ -31,6 +33,11 @@ public class LevelManager : MonoBehaviour
             //weapon.actifSpell = actifSpell;
             
             weaponInMap.Add(weapon);
+        }
+
+        foreach(WeaponSpawner spawner in weaponSpawners)
+        {
+            spawner.Init();
         }
     }
 }
