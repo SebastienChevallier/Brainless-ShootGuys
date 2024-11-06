@@ -11,17 +11,19 @@ public class PlayerMovement : MonoBehaviour, IHealth
     private PlayerInput playerInput;
     private Vector2 mousePos;
 
+    [Header("Player Info")]
+    public PlayerStats _stats;
     public Weapon _weapon;
+    public bool _CanMove = false;
+    public LayerMask _layerMask;
+
+    [Header("Referencies")]
     public Transform _weaponAnchor;
     public Transform _visualTranform;
-    public PlayerStats _stats;
-    public DeviceType _deviceType;
-    public LayerMask _layerMask;
     public Transform _cameraOrigin;
     public Camera _camera;
     public Animator _animator;
     public Weapon basicPistol;
-
 
     private void Start()
     {
@@ -38,11 +40,13 @@ public class PlayerMovement : MonoBehaviour, IHealth
 
     private void Update()
     {
+        if (!_CanMove) return;
         UpdateAnimatorParameters();
     }
 
     private void FixedUpdate()
     {
+        if (!_CanMove) return;
         rb.AddForce(moveDirection * _stats._Speed * Time.deltaTime, ForceMode.Impulse);
     }
 
@@ -102,12 +106,12 @@ public class PlayerMovement : MonoBehaviour, IHealth
 
     public void GetShootAction(InputAction.CallbackContext context) 
     {
-
+        if (!_CanMove) return;
     }
 
     public void GetSkillAction(InputAction.CallbackContext context)
     {
-
+        if (!_CanMove) return;
     }
 
     public void Dammage(float dmg)
