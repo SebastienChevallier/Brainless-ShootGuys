@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
     public Transform _weaponAnchor;
     public Transform _visualTranform;
     public Transform _cameraOrigin;
+    public Transform _bulletSpawnTransform;
     public Camera _camera;
     public Animator _animator;
     public Weapon basicPistol;
@@ -43,11 +44,6 @@ public class PlayerMovement : MonoBehaviour, IHealth
             _stats.Init();
         }
         isEquipWeapon = false;
-
-        playerBasicPistol = Instantiate(basicPistol);
-        playerBasicPistol.Init();
-
-        Equip(playerBasicPistol, true);
     }
 
     public void Spawn() { }
@@ -123,7 +119,11 @@ public class PlayerMovement : MonoBehaviour, IHealth
         if (!_CanMove) return;
 
         if (_weapon && context.started)
+        {
             _weapon.Shoot();
+            print(_weapon.GetInstanceID());
+            print(GetInstanceID());
+        }
     }
 
     public void GetSkillAction(InputAction.CallbackContext context)
@@ -159,7 +159,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
 
         if (isBasicPistol)
             playerBasicPistol.gameObject.SetActive(true);
-        else
+        else 
         {
             _weapon.Init();
             isEquipWeapon = true;
@@ -173,6 +173,16 @@ public class PlayerMovement : MonoBehaviour, IHealth
 
         Equip(playerBasicPistol, true);
         isEquipWeapon = false;
+    }
+
+    public void InstantiateBasicPistol()
+    {        
+        playerBasicPistol = Instantiate(basicPistol);
+        WeaponType weaponType = Instantiate(basicPistol.weaponType);
+        playerBasicPistol.weaponType = weaponType;
+        Equip(playerBasicPistol, true);
+        _weapon.Init();
+        _weapon.playerUse = this;
     }
 
     #endregion

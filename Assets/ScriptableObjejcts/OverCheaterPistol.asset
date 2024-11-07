@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: OverCheaterPistol
   m_EditorClassIdentifier: 
   bulletType: {fileID: 6689642571070957250, guid: 69910213d543efc4bb52e8e134a7caf2, type: 3}
-  damage: 5
+  damage: 10
   tireRateMinMax: {x: 0.1, y: 0.12}
   consumJaugeMinMax: {x: 2, y: 4}
   originWeapon: {fileID: 0}
   tireRate: 0
   consumJauge: 0
-  bulletSpeedMinMax: {x: 15, y: 30}
+  jauge: 0
+  bulletSpeedMinMax: {x: 40, y: 60}
   bulletSpeed: 0
+  bulletScale: 0.5
