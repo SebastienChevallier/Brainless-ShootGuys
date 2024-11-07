@@ -4,14 +4,20 @@ using UnityEngine.InputSystem;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System;
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 {    
     public PlayerInputManager _PlayerInputManager;
-    public List<PlayerInfo> _PlayerList;
-    public List<Material> playerMaterial;
-    public int _NumberOfRounds;
+    public List<PlayerInfo> _PlayerList;    
+    public int _NumberOfKills;
+    public int _MaxNumberOfKill;
     public int _ActualRound;
+
+    [Header("MeshMat")]
+    public List<Material> MeshMat;
+    public List<Material> playerMaterial;
 
     [Header("Player spawn Points")]
     [SerializeField]private List<Transform> spawnsTransform;
@@ -64,6 +70,7 @@ public class GameManager : MonoSingleton<GameManager>
         {
             playerMovement.skullRenderer.material = playerMaterial[_PlayerList.IndexOf(playerTemp)];
             playerMovement.arrowRenderer.material = playerMaterial[_PlayerList.IndexOf(playerTemp)];
+            playerMovement.Init(MeshMat[_PlayerList.IndexOf(playerTemp)]);
         }
 
         if(_PlayerList.Count > 1 ) 
@@ -87,7 +94,10 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void EndGame()
     {
-
+        if(_NumberOfKills >= _MaxNumberOfKill)
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 
     public void AddPoint(PlayerInput player)

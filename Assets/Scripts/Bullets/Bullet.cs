@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
     public virtual void OnTouch(Collider collision)
     {
         PlayerMovement player = collision.GetComponent<PlayerMovement>();
-        player.Dammage(weaponType.damage);
+        player.Dammage(weaponType.damage, origin);
         gameObject.SetActive(false);
     }
 }

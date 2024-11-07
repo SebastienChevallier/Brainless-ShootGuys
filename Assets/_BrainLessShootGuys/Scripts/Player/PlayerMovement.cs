@@ -1,4 +1,6 @@
 using Cinemachine.Utility;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -13,9 +15,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
 
     [Header("Player Info")]
     public PlayerStats _stats;
-
     public bool isEquipWeapon;
-
     public Weapon _weapon;
     public bool _CanMove = false;
     public LayerMask _layerMask;
@@ -29,19 +29,27 @@ public class PlayerMovement : MonoBehaviour, IHealth
     public Weapon basicPistol;
     public SkinnedMeshRenderer skullRenderer;
     public MeshRenderer arrowRenderer;
+    public List<SkinnedMeshRenderer> OtherMeshes;
     Weapon playerBasicPistol;
 
+    private CameraShake ShakeComp;
+    private bool canBeHurt;
+
+    private void Awake()
+    {
+        if (_stats != null)
+        {
+            _stats = Instantiate(_stats);
+            _stats.Init();
+        }
+    }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
-
-        if(_stats != null)
-        {
-            _stats = Instantiate(_stats);
-            _stats.Init();
-        }
+        ShakeComp = _camera.GetComponent<CameraShake>();
+        
         isEquipWeapon = false;
 
         playerBasicPistol = Instantiate(basicPistol);
@@ -50,7 +58,14 @@ public class PlayerMovement : MonoBehaviour, IHealth
         Equip(playerBasicPistol, true);
     }
 
-    public void Spawn() { }
+    public void Init(Material clothesMaterial) 
+    {
+        Material copyMat = new Material(clothesMaterial);
+        foreach(SkinnedMeshRenderer mesh in  OtherMeshes)
+        {
+            mesh.material = copyMat;
+        }
+    }
 
     private void Update()
     {
@@ -131,19 +146,41 @@ public class PlayerMovement : MonoBehaviour, IHealth
         if (!_CanMove) return;
     }
 
-    public void Dammage(float dmg)
+    public void Dammage(float dmg, GameObject PlayerOrigin)
     {
         if(dmg < _stats._CurrentHealth)
         {
+            if (!canBeHurt) return;
+
             _stats._CurrentHealth -= dmg;
+            ShakeComp.ShakeCamera();
+            StartCoroutine(HitMaterial());
         }
         else
         {
+            PlayerInput player = PlayerOrigin.GetComponent<PlayerInput>();
+            GameManager.Instance.AddPoint(player);
             //Fin de la manche
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 
+    IEnumerator HitMaterial()
+    {
+        foreach (SkinnedMeshRenderer mesh in OtherMeshes)
+        {
+            mesh.material.SetInteger("_Hit", 1);
+            canBeHurt = false;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        foreach (SkinnedMeshRenderer mesh in OtherMeshes)
+        {
+            canBeHurt = true;
+            mesh.material.SetInteger("_Hit", 0);
+        }
+    }
 
 
     #region equipements
