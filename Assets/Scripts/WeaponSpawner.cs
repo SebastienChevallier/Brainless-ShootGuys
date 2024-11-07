@@ -8,9 +8,10 @@ public class WeaponSpawner : MonoBehaviour
     public Transform weaponVisualTransformParent;
 
     public Weapon tempWeaponSpawn;
+    bool isWeaponSpawn;
 
     private float firstSpawnDelay;
-    private void Start()
+    private void Awake()
     {
         LevelManager.Instance.weaponSpawners.Add(this);
         firstSpawnDelay = Random.Range(firstSpawnDelayMinMax.x, firstSpawnDelayMinMax.y);
@@ -32,19 +33,21 @@ public class WeaponSpawner : MonoBehaviour
         tempWeaponSpawn.gameObject.SetActive(true);
         
         tempWeaponSpawn.enabled = false;
+        isWeaponSpawn = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player") && tempWeaponSpawn != null)
         {
             if (other.TryGetComponent<PlayerMovement>(out PlayerMovement pm))
             {
-                if (!pm.isEquipWeapon)
+                if (!pm.isEquipWeapon && isWeaponSpawn)
                 {
                     pm.Equip(tempWeaponSpawn);
+                    isWeaponSpawn=false;
+                    StartCoroutine(SpawnWeapon(false));
                 }
-                StartCoroutine(SpawnWeapon(false));
             }
         }
     }

@@ -14,10 +14,17 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    public void Start()
+    {
+        Destroy(gameObject, 5f);
+    }
+
     public virtual void OnTouch(Collider collision)
     {
         PlayerMovement player = collision.GetComponent<PlayerMovement>();
         player.Dammage(weaponType.damage, origin);
-        gameObject.SetActive(false);
+
+        Destroy(gameObject);
+        //gameObject.SetActive(false);
     }
 }

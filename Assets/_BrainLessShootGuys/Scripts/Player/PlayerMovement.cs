@@ -1,6 +1,7 @@
 using Cinemachine.Utility;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -150,8 +151,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
     {
         if(dmg < _stats._CurrentHealth)
         {
-            if (!canBeHurt) return;
-
+            //if (!canBeHurt) return;
             _stats._CurrentHealth -= dmg;
             ShakeComp.ShakeCamera();
             StartCoroutine(HitMaterial());
@@ -160,6 +160,8 @@ public class PlayerMovement : MonoBehaviour, IHealth
         {
             PlayerInput player = PlayerOrigin.GetComponent<PlayerInput>();
             GameManager.Instance.AddPoint(player);
+            GameManager.Instance.SpawnPlayer(GetComponent<PlayerInput>());
+            _stats.Init();
             //Fin de la manche
             //Destroy(gameObject);
         }
@@ -169,16 +171,16 @@ public class PlayerMovement : MonoBehaviour, IHealth
     {
         foreach (SkinnedMeshRenderer mesh in OtherMeshes)
         {
-            mesh.material.SetInteger("_Hit", 1);
-            canBeHurt = false;
+            mesh.material.SetFloat("_Hit", 1f);
+            //canBeHurt = false;
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         foreach (SkinnedMeshRenderer mesh in OtherMeshes)
         {
-            canBeHurt = true;
-            mesh.material.SetInteger("_Hit", 0);
+            
+            mesh.material.SetFloat("_Hit", 0f);
         }
     }
 
@@ -219,7 +221,6 @@ public class PlayerMovement : MonoBehaviour, IHealth
         playerBasicPistol.weaponType = weaponType;
         Equip(playerBasicPistol, true);
         _weapon.Init();
-        _weapon.playerUse = this;
     }
 
     #endregion
