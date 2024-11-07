@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
     public Camera _camera;
     public Animator _animator;
     public Weapon basicPistol;
+    public UIGaugeHandler healthGauge;
 
     private void Start()
     {
@@ -116,7 +117,8 @@ public class PlayerMovement : MonoBehaviour, IHealth
 
     public void Dammage(float dmg)
     {
-        if(dmg < _stats._CurrentHealth)
+        healthGauge.UpdateUISlider(_stats._CurrentHealth);
+        if (dmg < _stats._CurrentHealth)
         {
             _stats._CurrentHealth -= dmg;
         }
