@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour, IHealth
 
     [Header("Player Info")]
     public PlayerStats _stats;
+
+    public bool isEquipWeapon;
+
     public Weapon _weapon;
     public bool _CanMove = false;
     public LayerMask _layerMask;
@@ -26,6 +29,8 @@ public class PlayerMovement : MonoBehaviour, IHealth
     public Weapon basicPistol;
     public SkinnedMeshRenderer skullRenderer;
     public MeshRenderer arrowRenderer;
+    Weapon playerBasicPistol;
+
 
     private void Start()
     {
@@ -34,10 +39,15 @@ public class PlayerMovement : MonoBehaviour, IHealth
 
         if(_stats != null)
         {
+            _stats = Instantiate(_stats);
             _stats.Init();
         }
-        
-        Equip(basicPistol);
+        isEquipWeapon = false;
+
+        playerBasicPistol = Instantiate(basicPistol);
+        playerBasicPistol.Init();
+
+        Equip(playerBasicPistol, true);
     }
 
     public void Spawn() { }
@@ -111,6 +121,9 @@ public class PlayerMovement : MonoBehaviour, IHealth
     public void GetShootAction(InputAction.CallbackContext context) 
     {
         if (!_CanMove) return;
+
+        if (_weapon && context.started)
+            _weapon.Shoot();
     }
 
     public void GetSkillAction(InputAction.CallbackContext context)
@@ -127,25 +140,40 @@ public class PlayerMovement : MonoBehaviour, IHealth
         else
         {
             //Fin de la manche
+            Destroy(gameObject);
         }
     }
 
 
 
     #region equipements
-    public void Equip(Weapon wpn)
+    public void Equip(Weapon wpn, bool isBasicPistol = false)
     {
+        wpn.enabled = true;
+        wpn.playerUse = this;
         _weapon = wpn;
-        _weapon.enabled = true;
         _weapon.transform.SetParent(_weaponAnchor);
+        _weapon.transform.localPosition = Vector3.zero;
+        _weapon.transform.localRotation = Quaternion.identity;
+        _weapon.transform.localScale = Vector3.one;
+
+        if (isBasicPistol)
+            playerBasicPistol.gameObject.SetActive(true);
+        else
+        {
+            _weapon.Init();
+            isEquipWeapon = true;
+            playerBasicPistol.gameObject.SetActive(false);
+        }
     }
 
-    void UnEquip() 
+    public void UnEquip() 
     {
+        Destroy(_weapon.gameObject);
 
+        Equip(playerBasicPistol, true);
+        isEquipWeapon = false;
     }
-
-    
 
     #endregion
 }

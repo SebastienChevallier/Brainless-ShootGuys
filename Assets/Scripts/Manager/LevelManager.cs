@@ -22,6 +22,7 @@ public class LevelManager : MonoSingleton<LevelManager>
 
 
             WeaponVisual weaponVisual = Instantiate(weaponVisuals[Random.Range(0, weaponVisuals.Count)], weapon.weaponVisualParent);
+            //weaponVisual.transform.rotation = Quaternion.identity;
             WeaponType weaponType = Instantiate(weaponTypes[Random.Range(0, weaponTypes.Count)]);
             weaponType.DefineStats();
             //ActifSpell actifSpell = Instantiate(actifSpells[Random.Range(0, actifSpells.Count)]);
@@ -33,6 +34,7 @@ public class LevelManager : MonoSingleton<LevelManager>
             //weapon.actifSpell = actifSpell;
             
             weaponInMap.Add(weapon);
+            weapon.gameObject.SetActive(false);
         }
 
         foreach(WeaponSpawner spawner in weaponSpawners)

@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
     public ActifSpell actifSpell;
     public WeaponType weaponType;
     public Transform weaponVisualParent;
+    public PlayerMovement playerUse;
     #region test
 
     private void Update()
