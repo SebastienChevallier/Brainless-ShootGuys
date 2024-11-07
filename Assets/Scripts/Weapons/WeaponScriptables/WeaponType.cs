@@ -11,15 +11,22 @@ public class WeaponType : ScriptableObject
     public float tireRate;
     public float consumJauge;
 
+    public float jauge;
+
     public virtual void Init(Weapon weapon)
     {
         originWeapon = weapon;
         //A changer par le player
         bulletType.origin = weapon.gameObject;
+        jauge = 100;
     }
     public virtual void OnShoot()
     {
-        
+        jauge -= consumJauge;
+        if (jauge<=0 )
+        {
+            originWeapon.playerUse.UnEquip();
+        }
     }
 
     public virtual void DefineStats()

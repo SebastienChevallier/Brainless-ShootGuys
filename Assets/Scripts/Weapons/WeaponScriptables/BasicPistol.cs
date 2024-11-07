@@ -7,6 +7,8 @@ public class BasicPistol : Pistol
     {
         base.OnShoot();
         Bullet bullet = Instantiate(bulletType);
+        bullet.weaponType = this;
+        bullet.origin = originWeapon.playerUse.gameObject;
         bullet.transform.position = originWeapon.transform.position;
         bullet.transform.rotation = originWeapon.transform.rotation;
         bullet.rb.linearVelocity = originWeapon.transform.forward * bulletSpeed;

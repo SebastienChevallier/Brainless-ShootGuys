@@ -1188,7 +1188,7 @@ GameObject:
   - component: {fileID: 2303090082235025781}
   - component: {fileID: 5195995558841588119}
   - component: {fileID: 5610159318762905922}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1320,7 +1320,19 @@ MonoBehaviour:
     m_ActionId: 6b444451-8a00-4d00-a97e-f47457f736a8
     m_ActionName: 'Player/Look[/Mouse/delta]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5610159318762905922}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: GetShootAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6c2ab1b8-8984-453a-af3d-a3c78ae1679a
     m_ActionName: 'Player/Attack[/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:
@@ -1404,8 +1416,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d913b45847bc8c0468e9e105b90f15bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEquipWeapon: 0
   _weapon: {fileID: 0}
-  _weaponAnchor: {fileID: 7766274600354250719}
+  _weaponAnchor: {fileID: 4032279222480713500}
   _visualTranform: {fileID: 6869541881847234840}
   _stats: {fileID: 11400000, guid: 95aab67c1e4046e43bb6d5d418a29a2d, type: 2}
   _deviceType: 3
@@ -1860,6 +1873,7 @@ Transform:
   - {fileID: 3014573358723950525}
   - {fileID: 5132909655344258429}
   - {fileID: 1097403575836311659}
+  - {fileID: 4032279222480713500}
   m_Father: {fileID: 160830081672795064}
   m_LocalEulerAnglesHint: {x: 10.880739, y: 20.357784, z: 11.265303}
 --- !u!1 &4596613499316348950
@@ -4023,6 +4037,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4094715628313788501}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8417237788925674420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4032279222480713500}
+  m_Layer: 0
+  m_Name: WeaponAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4032279222480713500
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8417237788925674420}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.114, y: 0.015, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6975880338989810055}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8534097222503939679
 GameObject:

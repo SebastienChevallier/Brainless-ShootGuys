@@ -29,8 +29,9 @@ public class WeaponSpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnWeaponTime);
 
         tempWeaponSpawn = Instantiate(LevelManager.Instance.weaponInMap[Random.Range(0, LevelManager.Instance.weaponInMap.Count)], weaponVisualTransformParent);
+        tempWeaponSpawn.gameObject.SetActive(true);
+        
         tempWeaponSpawn.enabled = false;
-        //tempWeaponVisual = Instantiate(tempWeaponSpawn.weaponVisual, weaponVisualTransformParent);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,10 +39,13 @@ public class WeaponSpawner : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             if (other.TryGetComponent<PlayerMovement>(out PlayerMovement pm))
-                pm.Equip(tempWeaponSpawn);
-            //If (playerWeaon == null)
-            //   PlayerWeapon = weapon;
-            StartCoroutine(SpawnWeapon(false));
+            {
+                if (!pm.isEquipWeapon)
+                {
+                    pm.Equip(tempWeaponSpawn);
+                }
+                StartCoroutine(SpawnWeapon(false));
+            }
         }
     }
 }
