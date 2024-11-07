@@ -6629,7 +6629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1542454261
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7923,9 +7923,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0293c7c138ed5a4ca470921d6fb6690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ManagerInfo: {fileID: 0}
   _PlayerInputManager: {fileID: 1821452526}
-  _PlayerList: []
+  _NumberOfRounds: 0
   spawnsTransform:
   - {fileID: 358527822}
   - {fileID: 1162805747}
