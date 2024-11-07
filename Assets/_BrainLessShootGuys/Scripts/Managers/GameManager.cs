@@ -3,12 +3,15 @@ using BaseTemplate.Behaviours;
 using UnityEngine.InputSystem;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System;
 
 public class GameManager : MonoSingleton<GameManager>
 {    
     public PlayerInputManager _PlayerInputManager;
     public List<PlayerInfo> _PlayerList;
+    public List<Material> playerMaterial;
     public int _NumberOfRounds;
+    public int _ActualRound;
 
     [Header("Player spawn Points")]
     [SerializeField]private List<Transform> spawnsTransform;
@@ -17,6 +20,7 @@ public class GameManager : MonoSingleton<GameManager>
     [Header("UI Panels")]
     public GameObject _WaitingPanel;
 
+    [Serializable]
     public struct PlayerInfo
     {
         public PlayerInput playerInput;
@@ -43,7 +47,7 @@ public class GameManager : MonoSingleton<GameManager>
             FreeSpawnsTransform = spawnsTransform;
         }
 
-        Transform position = FreeSpawnsTransform[Random.Range(0, FreeSpawnsTransform.Count)];
+        Transform position = FreeSpawnsTransform[UnityEngine.Random.Range(0, FreeSpawnsTransform.Count)];
         FreeSpawnsTransform.Remove(position);
 
         playerInput.transform.position = position.position;
@@ -54,7 +58,13 @@ public class GameManager : MonoSingleton<GameManager>
         PlayerInfo playerTemp = new PlayerInfo();
         playerTemp.playerInput = player;
         playerTemp.playerScore = 0;
-        _PlayerList.Add(playerTemp);        
+        _PlayerList.Add(playerTemp);   
+        
+        if(playerTemp.playerInput.TryGetComponent<PlayerMovement>(out PlayerMovement playerMovement))
+        {
+            playerMovement.skullRenderer.material = playerMaterial[_PlayerList.IndexOf(playerTemp)];
+            playerMovement.arrowRenderer.material = playerMaterial[_PlayerList.IndexOf(playerTemp)];
+        }
 
         if(_PlayerList.Count > 1 ) 
         {

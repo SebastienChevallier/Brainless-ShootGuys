@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour, IHealth
     public Camera _camera;
     public Animator _animator;
     public Weapon basicPistol;
+    public SkinnedMeshRenderer skullRenderer;
+    public MeshRenderer arrowRenderer;
 
     private void Start()
     {
@@ -37,6 +39,8 @@ public class PlayerMovement : MonoBehaviour, IHealth
         
         Equip(basicPistol);
     }
+
+    public void Spawn() { }
 
     private void Update()
     {
@@ -125,6 +129,8 @@ public class PlayerMovement : MonoBehaviour, IHealth
             //Fin de la manche
         }
     }
+
+
 
     #region equipements
     public void Equip(Weapon wpn)
