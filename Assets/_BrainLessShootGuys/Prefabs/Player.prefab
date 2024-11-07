@@ -288,6 +288,7 @@ Transform:
   m_Children:
   - {fileID: 3196944116570598482}
   - {fileID: 5031861246506678884}
+  - {fileID: 4792936531857774390}
   m_Father: {fileID: 2302668924308473359}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1145090358050835550
@@ -1325,7 +1326,7 @@ GameObject:
   - component: {fileID: 2303090082235025781}
   - component: {fileID: 5195995558841588119}
   - component: {fileID: 5610159318762905922}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1457,7 +1458,19 @@ MonoBehaviour:
     m_ActionId: 6b444451-8a00-4d00-a97e-f47457f736a8
     m_ActionName: 'Player/Look[/Mouse/delta]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5610159318762905922}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: GetShootAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6c2ab1b8-8984-453a-af3d-a3c78ae1679a
     m_ActionName: 'Player/Attack[/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:
@@ -1551,6 +1564,7 @@ MonoBehaviour:
   _weaponAnchor: {fileID: 7766274600354250719}
   _visualTranform: {fileID: 6869541881847234840}
   _cameraOrigin: {fileID: 1972070244782056400}
+  _bulletSpawnTransform: {fileID: 4792936531857774390}
   _camera: {fileID: 4310032353779158728}
   _animator: {fileID: 4807577267261419298}
   basicPistol: {fileID: 6182154854610323338, guid: fac31cd04d5339a4d93a57ee8ed6f626, type: 3}
@@ -3747,6 +3761,37 @@ Transform:
   - {fileID: 9213202123717075923}
   m_Father: {fileID: 138069014628835928}
   m_LocalEulerAnglesHint: {x: 2.8692703, y: 19.354548, z: 2.6410897}
+--- !u!1 &7227024959534638553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4792936531857774390}
+  m_Layer: 0
+  m_Name: BulletSpawnTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4792936531857774390
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7227024959534638553}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.903, z: 0.556}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6869541881847234840}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7383155443291311501
 GameObject:
   m_ObjectHideFlags: 0

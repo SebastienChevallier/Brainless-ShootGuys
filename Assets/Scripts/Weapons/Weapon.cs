@@ -9,16 +9,6 @@ public class Weapon : MonoBehaviour
     public WeaponType weaponType;
     public Transform weaponVisualParent;
     public PlayerMovement playerUse;
-    #region test
-
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.Space)) {
-            Shoot();
-        }
-    }
-    #endregion
-
     public virtual void Init()
     {
         //actifSpell.Init(this);

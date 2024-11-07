@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class BasicPistol : Pistol
 {
+    public float bulletScale;
     public override void OnShoot()
     {
         base.OnShoot();
         Bullet bullet = Instantiate(bulletType);
         bullet.weaponType = this;
         bullet.origin = originWeapon.playerUse.gameObject;
-        bullet.transform.position = originWeapon.transform.position;
-        bullet.transform.rotation = originWeapon.transform.rotation;
-        bullet.rb.linearVelocity = originWeapon.transform.forward * bulletSpeed;
+        bullet.transform.position = originWeapon.playerUse._bulletSpawnTransform.position;
+        bullet.transform.rotation = originWeapon.playerUse._bulletSpawnTransform.rotation;
+        bullet.transform.localScale = Vector3.one * bulletScale;
+        bullet.rb.linearVelocity = originWeapon.playerUse._bulletSpawnTransform.forward * bulletSpeed;
     }
 }

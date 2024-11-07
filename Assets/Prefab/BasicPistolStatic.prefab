@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 2341722477758995782}
     - target: {fileID: 5545993302857199870, guid: a2491a9cc6868b749a75c813873f7ad9, type: 3}
       propertyPath: m_Name
-      value: BasicPistol
+      value: BasicPistolStatic
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
