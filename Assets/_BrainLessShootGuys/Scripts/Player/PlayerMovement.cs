@@ -137,6 +137,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
         if (_weapon && context.started)
         {
             _weapon.Shoot();
+            _animator.SetTrigger("Shoot");
             print(_weapon.GetInstanceID());
             print(GetInstanceID());
         }
@@ -175,7 +176,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
             //canBeHurt = false;
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.25f);
 
         foreach (SkinnedMeshRenderer mesh in OtherMeshes)
         {

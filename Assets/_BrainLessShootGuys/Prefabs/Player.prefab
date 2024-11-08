@@ -1216,7 +1216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 0}
   shakeDuration: 0.1
-  shakeAmount: 5
+  shakeAmount: 0.15
   decreaseFactor: 1
 --- !u!1 &3127669167992004433
 GameObject:
@@ -1357,7 +1357,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3198295443966596385}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: fe563be19a33eda4aac1be6e6e81e5ad, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2258,7 +2258,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5138172862786351780}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: b09df0e62f6643e47bf61ebad090eb60, type: 3}
   m_Controller: {fileID: 9100000, guid: 58fb562605cf1e0419f7bb468fa936e4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
