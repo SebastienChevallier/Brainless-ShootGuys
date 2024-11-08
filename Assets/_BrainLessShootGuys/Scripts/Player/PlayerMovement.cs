@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
     public Camera _camera;
     public Animator _animator;
     public Weapon basicPistol;
+
     public SkinnedMeshRenderer skullRenderer;
     public MeshRenderer arrowRenderer;
     public List<SkinnedMeshRenderer> OtherMeshes;
@@ -45,6 +46,10 @@ public class PlayerMovement : MonoBehaviour, IHealth
             _stats.Init();
         }
     }
+
+    public UIGaugeHandler healthGauge;
+    public UIWeaponGetter weaponUI;
+
 
     private void Start()
     {
@@ -156,7 +161,8 @@ public class PlayerMovement : MonoBehaviour, IHealth
 
     public void Dammage(float dmg, GameObject PlayerOrigin)
     {
-        if(dmg < _stats._CurrentHealth)
+        healthGauge.UpdateUISlider(_stats._CurrentHealth);
+        if (dmg < _stats._CurrentHealth)
         {
             //if (!canBeHurt) return;
             _stats._CurrentHealth -= dmg;
@@ -199,6 +205,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
         wpn.playerUse = this;
         _weapon = wpn;
         _weapon.transform.SetParent(_weaponAnchor);
+
         _weapon.transform.localPosition = Vector3.zero;
         _weapon.transform.localRotation = Quaternion.identity;
         _weapon.transform.localScale = Vector3.one;
@@ -211,6 +218,9 @@ public class PlayerMovement : MonoBehaviour, IHealth
             isEquipWeapon = true;
             playerBasicPistol.gameObject.SetActive(false);
         }
+
+        weaponUI.UpdateWeaponUI();
+
     }
 
     public void UnEquip() 

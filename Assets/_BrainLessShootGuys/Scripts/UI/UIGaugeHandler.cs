@@ -13,6 +13,7 @@ public class UIGaugeHandler : MonoBehaviour
     private void Start()
     {
         slider = GetComponent<Slider>();
+        UpdateUISlider(100);
     }
 
     public void UpdateUISlider(float newCurrentHealth)
