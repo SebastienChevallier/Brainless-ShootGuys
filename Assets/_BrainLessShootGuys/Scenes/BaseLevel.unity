@@ -17401,6 +17401,14 @@ PrefabInstance:
       propertyPath: numberOfWeapon
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4820031599967394733, guid: 2dbba821ae9d91f47a417662100ca78d, type: 3}
+      propertyPath: weaponTypes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820031599967394733, guid: 2dbba821ae9d91f47a417662100ca78d, type: 3}
+      propertyPath: 'weaponTypes.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 971749acd8e05134b8a58c7371bee8cf, type: 2}
     - target: {fileID: 7599563705051604560, guid: 2dbba821ae9d91f47a417662100ca78d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

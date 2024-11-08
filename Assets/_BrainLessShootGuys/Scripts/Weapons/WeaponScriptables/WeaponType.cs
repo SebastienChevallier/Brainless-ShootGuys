@@ -28,6 +28,10 @@ public class WeaponType : ScriptableObject
             originWeapon.playerUse.UnEquip();
         }
     }
+    public virtual void StopShooting()
+    {
+
+    }
 
     public virtual void DefineStats()
     {

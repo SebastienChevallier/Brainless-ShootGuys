@@ -137,8 +137,11 @@ public class PlayerMovement : MonoBehaviour, IHealth
         if (_weapon && context.started)
         {
             _weapon.Shoot();
-            print(_weapon.GetInstanceID());
-            print(GetInstanceID());
+        }
+
+        if (_weapon && context.canceled)
+        {
+            _weapon.StopShooting();
         }
     }
 
