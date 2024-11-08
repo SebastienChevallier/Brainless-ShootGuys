@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
     public Animator _animator;
     public Weapon basicPistol;
     public UIGaugeHandler healthGauge;
+    public UIWeaponGetter weaponUI;
 
     private void Start()
     {
@@ -134,6 +135,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
         _weapon = wpn;
         _weapon.enabled = true;
         _weapon.transform.SetParent(_weaponAnchor);
+        weaponUI.UpdateWeaponUI();
     }
 
     void UnEquip() 

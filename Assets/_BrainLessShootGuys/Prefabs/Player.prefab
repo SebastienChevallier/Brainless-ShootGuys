@@ -1537,6 +1537,7 @@ MonoBehaviour:
   _animator: {fileID: 4807577267261419298}
   basicPistol: {fileID: 6182154854610323338, guid: fac31cd04d5339a4d93a57ee8ed6f626, type: 3}
   healthGauge: {fileID: 5055847543012039891}
+  weaponUI: {fileID: 2956962087358919237}
 --- !u!1 &3361744817159100331
 GameObject:
   m_ObjectHideFlags: 0
@@ -4559,6 +4560,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6542920072662061056, guid: 6481bba4ecfa73c42b15060b21cf66b4, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 5610159318762905922}
     - target: {fileID: 7271723380835910576, guid: 6481bba4ecfa73c42b15060b21cf66b4, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -4592,6 +4597,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6481bba4ecfa73c42b15060b21cf66b4, type: 3}
+--- !u!114 &2956962087358919237 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6542920072662061056, guid: 6481bba4ecfa73c42b15060b21cf66b4, type: 3}
+  m_PrefabInstance: {fileID: 8341830316836053573}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e2cebf556da7448bc757ba04f81f99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5055847543012039891 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3886000597255290518, guid: 6481bba4ecfa73c42b15060b21cf66b4, type: 3}
