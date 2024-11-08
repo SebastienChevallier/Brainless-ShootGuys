@@ -100,7 +100,7 @@ MonoBehaviour:
   origin: {fileID: 0}
   layerCanTouch:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 136
   rb: {fileID: 4616415182956316431}
   weaponType: {fileID: 0}
 --- !u!1001 &7114950820230785875
