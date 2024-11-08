@@ -64,8 +64,9 @@ MonoBehaviour:
   - {fileID: 4001131238299333433, guid: 5d241348dc1557048b18bf3929bf32c5, type: 3}
   weaponTypes:
   - {fileID: 11400000, guid: b1477de0ad7aa8b4ea36589183245826, type: 2}
+  - {fileID: 11400000, guid: 971749acd8e05134b8a58c7371bee8cf, type: 2}
   actifSpells: []
   weaponInMap: []
   weaponSpawners: []
-  numberOfWeapon: 2
+  numberOfWeapon: 4
   WeaponTrunk: {fileID: 1793693205309866453, guid: a2491a9cc6868b749a75c813873f7ad9, type: 3}

@@ -20,6 +20,11 @@ public class Weapon : MonoBehaviour
         weaponVisual.OnShoot();
     }
 
+    public void StopShooting()
+    {
+        weaponType.StopShooting();
+    }
+
     public void UseActifSpell()
     {
         actifSpell.OnUse();

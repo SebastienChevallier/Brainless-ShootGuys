@@ -141,6 +141,12 @@ public class PlayerMovement : MonoBehaviour, IHealth
             print(_weapon.GetInstanceID());
             print(GetInstanceID());
         }
+
+        if (_weapon && context.canceled)
+        {
+            _weapon.StopShooting();
+
+        }
     }
 
     public void GetSkillAction(InputAction.CallbackContext context)
