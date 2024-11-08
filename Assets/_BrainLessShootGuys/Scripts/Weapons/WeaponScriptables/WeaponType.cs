@@ -22,8 +22,13 @@ public class WeaponType : ScriptableObject
     }
     public virtual void OnShoot()
     {
+        
+    }
+
+    public virtual void ConsumJauge()
+    {
         jauge -= consumJauge;
-        if (jauge<=0 )
+        if (jauge <= 0)
         {
             originWeapon.playerUse.UnEquip();
         }
@@ -31,6 +36,11 @@ public class WeaponType : ScriptableObject
     public virtual void StopShooting()
     {
 
+    }
+
+    public virtual void InstantiateBullet()
+    {
+        ConsumJauge();
     }
 
     public virtual void DefineStats()

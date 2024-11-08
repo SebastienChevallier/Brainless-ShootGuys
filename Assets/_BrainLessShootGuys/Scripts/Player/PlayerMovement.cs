@@ -1,7 +1,6 @@
 using Cinemachine.Utility;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -58,6 +57,11 @@ public class PlayerMovement : MonoBehaviour, IHealth
         ShakeComp = _camera.GetComponent<CameraShake>();
         
         isEquipWeapon = false;
+
+        //ONLY TEST ! NEED TO BE REMOVE
+        _weapon.weaponType = Instantiate(_weapon.weaponType);
+        _weapon.weaponType.DefineStats();
+        _weapon.Init();
     }
 
     public void Init(Material clothesMaterial) 
@@ -71,6 +75,11 @@ public class PlayerMovement : MonoBehaviour, IHealth
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E))
+            _weapon.Shoot();
+        if (Input.GetKeyDown(KeyCode.F))
+            _weapon.StopShooting();
+
         if (!_CanMove) return;
         UpdateAnimatorParameters();
     }
@@ -143,8 +152,6 @@ public class PlayerMovement : MonoBehaviour, IHealth
         {
             _weapon.Shoot();
             _animator.SetTrigger("Shoot");
-            print(_weapon.GetInstanceID());
-            print(GetInstanceID());
         }
 
         if (_weapon && context.canceled)

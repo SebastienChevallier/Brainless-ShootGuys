@@ -11,37 +11,45 @@ public class Rifle : WeaponType
     [Tooltip("Type 0 for automatic weapon")]
     public int bulletInRafale;
     public Vector2 timeToReloadRafaleMinMax;
+    [Space(10)]
 
     protected float timeToReloadRafale;
     protected bool isShooting;
+    protected bool isRafaling;
     public override void Init(Weapon weapon)
     {
         base.Init(weapon);
     }
     public override void OnShoot()
     {
+        if (isShooting && isRafaling)
+            return;
+
         base.OnShoot();
-        
+
         isShooting = true;
-        
+
         if (isRafale)
             originWeapon.StartCoroutine(ShootRafale());
-        else
+        else if (!isRafale)
             originWeapon.StartCoroutine(ShootLoop());
 
     }
 
     public IEnumerator ShootLoop()
     {
+        isRafaling = true;
         while (isShooting)
         {
             InstantiateBullet();
             yield return new WaitForSeconds(tireRate);
         }
+        isRafaling = false;
     }
     
     public IEnumerator ShootRafale()
     {
+        isRafaling = true;
         while (isShooting)
         {
             for (int i = 0; i < bulletInRafale; i++)
@@ -52,10 +60,11 @@ public class Rifle : WeaponType
             
             yield return new WaitForSeconds(timeToReloadRafale);
         }
+        isRafaling = false;
     }
-    public virtual void InstantiateBullet()
+    public override void InstantiateBullet()
     {
-
+        base.InstantiateBullet();
     }
 
     public override void StopShooting()

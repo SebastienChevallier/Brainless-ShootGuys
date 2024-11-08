@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: StaticPistol
   m_EditorClassIdentifier: 
   bulletType: {fileID: 6689642571070957250, guid: 69910213d543efc4bb52e8e134a7caf2, type: 3}
-  damage: 7
-  tireRateMinMax: {x: 0.5, y: 0.75}
+  damage: 5
+  tireRateMinMax: {x: 0.175, y: 0.175}
   consumJaugeMinMax: {x: 0, y: 0}
   originWeapon: {fileID: 0}
-  tireRate: 6.7
+  tireRate: 0.175
   consumJauge: 0
   jauge: 100
-  bulletSpeedMinMax: {x: 10, y: 15}
-  bulletSpeed: 15
-  bulletScale: 0.1
+  bulletSpeedMinMax: {x: 17.5, y: 17.5}
+  bulletSpeed: 17.5
+  bulletScale: 0.13

@@ -6,18 +6,25 @@ public class Pistol : WeaponType
     public Vector2 bulletSpeedMinMax;
     public float bulletSpeed;
 
-    protected bool canShoot;
+    protected bool canShoot = true;
     public override void Init(Weapon weapon)
     {
         base.Init(weapon);
+        canShoot = true;
     }
     public override void OnShoot()
     {
-        if (canShoot)
-        {
-            base.OnShoot();
-            originWeapon.StartCoroutine(WaitingForShoot());
-        }
+        if (!canShoot)
+            return;
+
+        base.OnShoot();
+        InstantiateBullet();
+        originWeapon.StartCoroutine(WaitingForShoot());
+    }
+
+    public override void InstantiateBullet()
+    {
+        base.InstantiateBullet();
     }
 
     public virtual IEnumerator WaitingForShoot()

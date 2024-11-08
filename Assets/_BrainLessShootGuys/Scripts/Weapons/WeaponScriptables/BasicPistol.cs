@@ -4,9 +4,10 @@ using UnityEngine;
 public class BasicPistol : Pistol
 {
     public float bulletScale;
-    public override void OnShoot()
+    public override void InstantiateBullet()
     {
-        base.OnShoot();
+        base.InstantiateBullet();
+
         Bullet bullet = Instantiate(bulletType);
         bullet.weaponType = this;
         bullet.origin = originWeapon.playerUse.gameObject;

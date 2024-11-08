@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: BasicPistol
   m_EditorClassIdentifier: 
   bulletType: {fileID: 6689642571070957250, guid: 69910213d543efc4bb52e8e134a7caf2, type: 3}
-  damage: 7
-  tireRateMinMax: {x: 0.5, y: 0.75}
-  consumJaugeMinMax: {x: 2, y: 5}
+  damage: 8
+  tireRateMinMax: {x: 0.1, y: 0.4}
+  consumJaugeMinMax: {x: 4, y: 7}
   originWeapon: {fileID: 0}
   tireRate: 0
   consumJauge: 0
   jauge: 0
-  bulletSpeedMinMax: {x: 10, y: 15}
+  bulletSpeedMinMax: {x: 35, y: 50}
   bulletSpeed: 0
-  bulletScale: 1
+  bulletScale: 0.3

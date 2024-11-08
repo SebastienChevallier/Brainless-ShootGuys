@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletType: {fileID: 6689642571070957250, guid: 69910213d543efc4bb52e8e134a7caf2, type: 3}
   damage: 2
-  tireRateMinMax: {x: 0.05, y: 0.3}
+  tireRateMinMax: {x: 0.05, y: 0.2}
   consumJaugeMinMax: {x: 1, y: 5}
   originWeapon: {fileID: 0}
   tireRate: 0
   consumJauge: 0
-  jauge: 0
-  bulletSpeedMinMax: {x: 20, y: 40}
+  jauge: 100
+  bulletSpeedMinMax: {x: 15, y: 30}
   bulletSpeed: 0
   isRafale: 0
-  bulletInRafale: 0
-  timeToReloadRafaleMinMax: {x: 0, y: 0}
-  bulletScale: 0
+  bulletInRafale: 4
+  timeToReloadRafaleMinMax: {x: 0.3, y: 0.6}
+  bulletScale: 0.15
