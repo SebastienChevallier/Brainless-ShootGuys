@@ -19,7 +19,7 @@ MonoBehaviour:
   originWeapon: {fileID: 0}
   tireRate: 0
   consumJauge: 0
-  jauge: 100
+  jauge: 10000
   bulletSpeedMinMax: {x: 15, y: 30}
   bulletSpeed: 0
   isRafale: 1

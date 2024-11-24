@@ -16,21 +16,24 @@ public class Rifle : WeaponType
     protected float timeToReloadRafale;
     protected bool isShooting;
     protected bool isRafaling;
+
+    Coroutine shootCoroutine;
     public override void Init(Weapon weapon)
     {
         base.Init(weapon);
     }
     public override void OnShoot()
     {
-        if (isShooting && isRafaling)
+        isShooting = true;
+
+        if (isRafaling)
             return;
 
         base.OnShoot();
 
-        isShooting = true;
 
         if (isRafale)
-            originWeapon.StartCoroutine(ShootRafale());
+            shootCoroutine = originWeapon.StartCoroutine(ShootRafale());
         else if (!isRafale)
             originWeapon.StartCoroutine(ShootLoop());
 
@@ -60,7 +63,9 @@ public class Rifle : WeaponType
             
             yield return new WaitForSeconds(timeToReloadRafale);
         }
+
         isRafaling = false;
+        shootCoroutine = null;
     }
     public override void InstantiateBullet()
     {
