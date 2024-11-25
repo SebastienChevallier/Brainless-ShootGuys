@@ -57,9 +57,9 @@ public class PlayerMovement : MonoBehaviour, IHealth
         isEquipWeapon = false;
 
         //ONLY TEST ! NEED TO BE REMOVE
-        _weapon.weaponType = Instantiate(_weapon.weaponType);
+/*        _weapon.weaponType = Instantiate(_weapon.weaponType);
         _weapon.weaponType.DefineStats();
-        _weapon.Init();
+        _weapon.Init();*/
     }
 
     public void Init(Material clothesMaterial) 
@@ -151,6 +151,9 @@ public class PlayerMovement : MonoBehaviour, IHealth
         {
             _weapon.Shoot();
             _animator.SetTrigger("Shoot");
+        }
+        else if (_weapon && context.canceled) {
+            _weapon.StopShooting();
         }
     }
     public void GetSkillAction(InputAction.CallbackContext context)

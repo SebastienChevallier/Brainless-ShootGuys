@@ -10,7 +10,6 @@ public class Bullet : MonoBehaviour
     public void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject != origin && (layerCanTouch.value & (1 << collision.transform.gameObject.layer)) > 0) {
-            print(collision.gameObject.name);   
             if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
                 OnTouch(collision);
 
