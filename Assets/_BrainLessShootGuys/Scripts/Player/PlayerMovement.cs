@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
     public UIGaugeHandler _gaugeHandler;
 
     private CameraShake ShakeComp;
-    private bool canBeHurt;
+    private bool canBeHurt = true;
 
     private void Awake()
     {
@@ -55,6 +55,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
         ShakeComp = _camera.GetComponent<CameraShake>();
         
         isEquipWeapon = false;
+        canBeHurt = true;
 
         //ONLY TEST ! NEED TO BE REMOVE
 /*        _weapon.weaponType = Instantiate(_weapon.weaponType);
