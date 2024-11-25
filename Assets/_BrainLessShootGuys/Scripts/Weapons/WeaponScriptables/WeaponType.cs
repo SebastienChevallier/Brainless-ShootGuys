@@ -3,7 +3,7 @@ using UnityEngine;
 public class WeaponType : ScriptableObject
 {
     public Bullet bulletType;
-    public int damage;
+    public float damage;
     public Vector2 tireRateMinMax;
     public Vector2 consumJaugeMinMax;
 

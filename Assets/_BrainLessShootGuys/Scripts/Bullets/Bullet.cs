@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
     public LayerMask layerCanTouch;
     public Rigidbody rb;
     public WeaponType weaponType;
+    public float destroyDelay = 5;
 
     public void OnTriggerEnter(Collider collision)
     {
@@ -19,7 +20,7 @@ public class Bullet : MonoBehaviour
 
     public void Start()
     {
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, destroyDelay);
     }
 
     public virtual void OnTouch(Collider collision)

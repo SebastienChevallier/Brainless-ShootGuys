@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BasicPistol : Pistol
 {
-    public float bulletScale;
+    
     public override void InstantiateBullet()
     {
         base.InstantiateBullet();
