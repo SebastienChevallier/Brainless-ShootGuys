@@ -164,7 +164,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
 
     public void Dammage(float dmg, GameObject PlayerOrigin)
     {
-        if (!canBeHurt) return;
+        //if (!canBeHurt) return;
 
         if (dmg < _stats._CurrentHealth)
         {            
