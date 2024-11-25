@@ -17484,7 +17484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4820031599967394733, guid: 2dbba821ae9d91f47a417662100ca78d, type: 3}
       propertyPath: numberOfWeapon
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4820031599967394733, guid: 2dbba821ae9d91f47a417662100ca78d, type: 3}
       propertyPath: weaponTypes.Array.size
