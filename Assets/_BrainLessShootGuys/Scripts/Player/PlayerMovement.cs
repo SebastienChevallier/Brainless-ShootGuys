@@ -233,6 +233,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
         Destroy(_weapon.gameObject);
 
         Equip(playerBasicPistol, true);
+        playerBasicPistol.Init();
         isEquipWeapon = false;
     }
 

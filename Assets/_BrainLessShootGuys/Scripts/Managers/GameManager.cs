@@ -89,6 +89,7 @@ public class GameManager : MonoSingleton<GameManager>
                 SpawnPlayer(player.playerInput);
                 playerMovement._CanMove = true;
                 playerMovement.InstantiateBasicPistol();
+                playerMovement.isEquipWeapon = false;
             }
         }
     }

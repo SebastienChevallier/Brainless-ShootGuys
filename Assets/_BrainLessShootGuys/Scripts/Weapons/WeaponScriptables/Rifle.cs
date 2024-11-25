@@ -21,6 +21,8 @@ public class Rifle : WeaponType
     public override void Init(Weapon weapon)
     {
         base.Init(weapon);
+        isRafaling = false;
+        isShooting = false;
     }
     public override void OnShoot()
     {
