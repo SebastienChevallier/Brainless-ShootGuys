@@ -75,10 +75,10 @@ public class PlayerMovement : MonoBehaviour, IHealth
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+/*        if (Input.GetKeyDown(KeyCode.E))
             _weapon.Shoot();
         if (Input.GetKeyDown(KeyCode.F))
-            _weapon.StopShooting();
+            _weapon.StopShooting();*/
 
         if (!_CanMove) return;
         UpdateAnimatorParameters();
