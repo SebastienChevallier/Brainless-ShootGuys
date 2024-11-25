@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BasicRifleRafale
   m_EditorClassIdentifier: 
   bulletType: {fileID: 6689642571070957250, guid: 69910213d543efc4bb52e8e134a7caf2, type: 3}
-  damage: 4
+  damage: 5
   tireRateMinMax: {x: 0.02, y: 0.15}
   consumJaugeMinMax: {x: 1, y: 5}
   originWeapon: {fileID: 0}
