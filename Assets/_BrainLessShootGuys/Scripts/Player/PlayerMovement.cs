@@ -28,11 +28,13 @@ public class PlayerMovement : MonoBehaviour, IHealth
     public Camera _camera;
     public Animator _animator;
     public Weapon basicPistol;
-
     public SkinnedMeshRenderer skullRenderer;
     public MeshRenderer arrowRenderer;
     public List<SkinnedMeshRenderer> OtherMeshes;
     Weapon playerBasicPistol;
+
+    [Header("UIRefs")]
+    public UIGaugeHandler _gaugeHandler;
 
     private CameraShake ShakeComp;
     private bool canBeHurt;
@@ -45,10 +47,6 @@ public class PlayerMovement : MonoBehaviour, IHealth
             _stats.Init();
         }
     }
-
-    public UIGaugeHandler healthGauge;
-    public UIWeaponGetter weaponUI;
-
 
     private void Start()
     {
@@ -80,6 +78,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
         if (Input.GetKeyDown(KeyCode.F))
             _weapon.StopShooting();*/
 
+        if(Input.GetKey(KeyCode.Space)) { Dammage(10, null); }
         if (!_CanMove) return;
         UpdateAnimatorParameters();
     }
@@ -153,12 +152,6 @@ public class PlayerMovement : MonoBehaviour, IHealth
             _weapon.Shoot();
             _animator.SetTrigger("Shoot");
         }
-
-        if (_weapon && context.canceled)
-        {
-            _weapon.StopShooting();
-
-        }
     }
     public void GetSkillAction(InputAction.CallbackContext context)
     {
@@ -167,20 +160,26 @@ public class PlayerMovement : MonoBehaviour, IHealth
 
     public void Dammage(float dmg, GameObject PlayerOrigin)
     {
-        healthGauge.UpdateUISlider(_stats._CurrentHealth);
+        if (!canBeHurt) return;
+
         if (dmg < _stats._CurrentHealth)
-        {
-            //if (!canBeHurt) return;
+        {            
             _stats._CurrentHealth -= dmg;
             ShakeComp.ShakeCamera();
             StartCoroutine(HitMaterial());
+            _gaugeHandler.UpdateUISlider(_stats._CurrentHealth);
         }
         else
         {
-            PlayerInput player = PlayerOrigin.GetComponent<PlayerInput>();
-            GameManager.Instance.AddPoint(player);
+            /*if (PlayerOrigin != null)
+            {
+                PlayerInput player = PlayerOrigin.GetComponent<PlayerInput>();
+                GameManager.Instance.AddPoint(player);
+            }*/
+
             GameManager.Instance.SpawnPlayer(GetComponent<PlayerInput>());
             _stats.Init();
+            _gaugeHandler.UpdateUISlider(_stats._CurrentHealth);
             //Fin de la manche
             //Destroy(gameObject);
         }
@@ -191,14 +190,14 @@ public class PlayerMovement : MonoBehaviour, IHealth
         foreach (SkinnedMeshRenderer mesh in OtherMeshes)
         {
             mesh.material.SetFloat("_Hit", 1f);
-            //canBeHurt = false;
+            canBeHurt = false;
         }
 
         yield return new WaitForSeconds(0.25f);
 
         foreach (SkinnedMeshRenderer mesh in OtherMeshes)
         {
-            
+            canBeHurt = true;
             mesh.material.SetFloat("_Hit", 0f);
         }
     }
@@ -211,7 +210,6 @@ public class PlayerMovement : MonoBehaviour, IHealth
         wpn.playerUse = this;
         _weapon = wpn;
         _weapon.transform.SetParent(_weaponAnchor);
-
         _weapon.transform.localPosition = Vector3.zero;
         _weapon.transform.localRotation = Quaternion.identity;
         _weapon.transform.localScale = Vector3.one;
@@ -224,9 +222,6 @@ public class PlayerMovement : MonoBehaviour, IHealth
             isEquipWeapon = true;
             playerBasicPistol.gameObject.SetActive(false);
         }
-
-        weaponUI.UpdateWeaponUI();
-
     }
 
     public void UnEquip() 
