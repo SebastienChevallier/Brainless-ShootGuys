@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     public Rigidbody rb;
     public WeaponType weaponType;
 
-    public void OnTriggerEnter(Collider collision)
+    public virtual void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject != origin && (layerCanTouch.value & (1 << collision.transform.gameObject.layer)) > 0) {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
