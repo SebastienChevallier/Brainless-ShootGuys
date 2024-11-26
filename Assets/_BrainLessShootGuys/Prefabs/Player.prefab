@@ -5178,7 +5178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 5970717224408040070}
-  shakeDuration: 1.5
+  shakeDuration: 1
   shakeAmount: 5
   decreaseFactor: 1
 --- !u!1 &9072709016132944591
