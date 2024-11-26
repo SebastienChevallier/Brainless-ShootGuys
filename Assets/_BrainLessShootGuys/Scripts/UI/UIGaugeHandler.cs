@@ -10,19 +10,19 @@ public class UIGaugeHandler : MonoBehaviour
     private Slider slider;
     public UIShake uiShake;
 
-    private void Start()
+    private void Awake()
     {
-        slider = GetComponent<Slider>();
         UpdateUISlider(100);
     }
 
-    public void UpdateUISlider(float newCurrentHealth)
+    public void UpdateUISlider(float newCurrentHealth, bool instant = false)
     {
+        slider = GetComponent<Slider>();
         valueAfterUpdate = newCurrentHealth;
-        StartCoroutine(UpdateUISliderCoroutine());
+        StartCoroutine(UpdateUISliderCoroutine(instant));
     }
 
-    IEnumerator UpdateUISliderCoroutine()
+    IEnumerator UpdateUISliderCoroutine(bool instant = false)
     {
         float valueDifference = valueAfterUpdate - currentValue;
         int multiplier = 1;
@@ -39,13 +39,16 @@ public class UIGaugeHandler : MonoBehaviour
 
         float step = valueDifference / numberOfSteps * numberOfStepsMultiplier;
 
-        if (valueDifference != 0) uiShake.ShakeUI();
+        if (valueDifference != 0 && uiShake) uiShake.ShakeUI();
 
-        while ((currentValue >= valueAfterUpdate - step) | (currentValue <= valueAfterUpdate + step))
+        if (!instant)
         {
-            currentValue += step * multiplier;
-            slider.value = currentValue;
-            yield return new WaitForFixedUpdate();
+            while ((currentValue >= valueAfterUpdate - step) | (currentValue <= valueAfterUpdate + step))
+            {
+                currentValue += step * multiplier;
+                slider.value = currentValue;
+                yield return new WaitForFixedUpdate();
+            }
         }
 
         currentValue = valueAfterUpdate;

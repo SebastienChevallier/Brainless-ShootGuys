@@ -34,13 +34,14 @@ public class PlayerMovement : MonoBehaviour, IHealth
     Weapon playerBasicPistol;
 
     [Header("UIRefs")]
-    public UIGaugeHandler _gaugeHandler;
+    public UIGaugeHandler _healthGaugeHandler, _weaponGaugeHandler;
 
     [Header("Particles")]
     public ParticleSystem _breakParticles;
 
     private CameraShake ShakeComp;
     private bool canBeHurt = true;
+    private PlayerDeathEffect playerDeathEffect;
 
     private void Awake()
     {
@@ -56,9 +57,12 @@ public class PlayerMovement : MonoBehaviour, IHealth
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         ShakeComp = _camera.GetComponent<CameraShake>();
-        
+        playerDeathEffect = GetComponent<PlayerDeathEffect>();
+
         isEquipWeapon = false;
         canBeHurt = true;
+        
+        _weaponGaugeHandler.UpdateUISlider(0, true);
 
         //ONLY TEST ! NEED TO BE REMOVE
 /*        _weapon.weaponType = Instantiate(_weapon.weaponType);
@@ -174,7 +178,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
             _stats._CurrentHealth -= dmg;
             ShakeComp.ShakeCamera();
             StartCoroutine(HitMaterial());
-            _gaugeHandler.UpdateUISlider(_stats._CurrentHealth);
+            _healthGaugeHandler.UpdateUISlider(_stats._CurrentHealth);
         }
         else
         {
@@ -183,13 +187,27 @@ public class PlayerMovement : MonoBehaviour, IHealth
                 PlayerInput player = PlayerOrigin.GetComponent<PlayerInput>();
                 GameManager.Instance.AddPoint(player);
             }*/
+            playerDeathEffect.DeathAnimation();
 
-            GameManager.Instance.SpawnPlayer(GetComponent<PlayerInput>());
-            _stats.Init();
-            _gaugeHandler.UpdateUISlider(_stats._CurrentHealth);
+            StartCoroutine(WaitBeforeRespawn());
             //Fin de la manche
             //Destroy(gameObject);
         }
+    }
+    IEnumerator WaitBeforeRespawn()
+    {
+        _visualTranform.gameObject.SetActive(false);
+
+        while (!playerDeathEffect.hasFinishedCoroutine)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        GameManager.Instance.SpawnPlayer(GetComponent<PlayerInput>());
+        _stats.Init();
+        _healthGaugeHandler.UpdateUISlider(_stats._CurrentHealth);
+
+        _visualTranform.gameObject.SetActive(true);
     }
 
     IEnumerator HitMaterial()
@@ -222,12 +240,16 @@ public class PlayerMovement : MonoBehaviour, IHealth
         _weapon.transform.localScale = Vector3.one;
 
         if (isBasicPistol)
+        {
             playerBasicPistol.gameObject.SetActive(true);
-        else 
+            _weaponGaugeHandler.UpdateUISlider(0);
+        }
+        else
         {
             _weapon.Init();
             isEquipWeapon = true;
             playerBasicPistol.gameObject.SetActive(false);
+            _weaponGaugeHandler.UpdateUISlider(100);
         }
     }
 
@@ -239,6 +261,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
         Equip(playerBasicPistol, true);
         playerBasicPistol.Init();
         isEquipWeapon = false;
+        _weaponGaugeHandler.UpdateUISlider(0);
     }
 
     public void InstantiateBasicPistol()
