@@ -291,7 +291,7 @@ GameObject:
   - component: {fileID: 4616415182956316431}
   - component: {fileID: 6689642571070957250}
   m_Layer: 0
-  m_Name: PistolBullet
+  m_Name: BasicBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

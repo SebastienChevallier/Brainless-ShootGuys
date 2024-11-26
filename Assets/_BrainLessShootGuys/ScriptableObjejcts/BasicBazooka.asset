@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: BasicBazooka
   m_EditorClassIdentifier: 
   bulletType: {fileID: 6689642571070957250, guid: 69910213d543efc4bb52e8e134a7caf2, type: 3}
+  chanceSpecialBullets: 0.25
+  specialBullets:
+  - {fileID: 6689642571070957250, guid: a1978c514036c5740bd3884e5f9c654d, type: 3}
   damage: 40
   tireRateMinMax: {x: 1.5, y: 3.5}
   consumJaugeMinMax: {x: 20, y: 40}
