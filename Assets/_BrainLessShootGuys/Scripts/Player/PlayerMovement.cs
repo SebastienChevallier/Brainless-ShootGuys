@@ -36,6 +36,9 @@ public class PlayerMovement : MonoBehaviour, IHealth
     [Header("UIRefs")]
     public UIGaugeHandler _gaugeHandler;
 
+    [Header("Particles")]
+    public ParticleSystem _breakParticles;
+
     private CameraShake ShakeComp;
     private bool canBeHurt = true;
 
@@ -230,6 +233,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
 
     public void UnEquip() 
     {
+        _breakParticles.Play();
         Destroy(_weapon.gameObject);
 
         Equip(playerBasicPistol, true);
