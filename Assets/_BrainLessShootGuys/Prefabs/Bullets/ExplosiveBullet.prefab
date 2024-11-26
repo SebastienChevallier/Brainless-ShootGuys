@@ -114,4 +114,4 @@ MonoBehaviour:
   rb: {fileID: 1125971438803460191}
   weaponType: {fileID: 0}
   destroyDelay: 5
-  explosionForce: -50
+  explosionForce: 50

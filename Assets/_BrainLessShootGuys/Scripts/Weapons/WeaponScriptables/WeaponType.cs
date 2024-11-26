@@ -39,7 +39,7 @@ public class WeaponType : ScriptableObject
         jauge -= consumJauge;
 
         if (consumJauge > 0) originWeapon.playerUse._weaponGaugeHandler.UpdateUISlider(jauge);
-        else originWeapon.playerUse._weaponGaugeHandler.UpdateUISlider(0);
+        else originWeapon.playerUse._weaponGaugeHandler.UpdateUISlider(0);  
 
         if (jauge <= 0)
         {
