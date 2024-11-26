@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1641955947151394739}
   - component: {fileID: 5578253723150591118}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 1972868961288352474}
   - component: {fileID: 1558954845605590491}
   - component: {fileID: 3606582697215781347}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 0.51886785, g: 1, b: 0.52711695, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_Range: 7
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 5532815557911948055}
   - component: {fileID: 8892174923151680690}
   - component: {fileID: 6666363958284734584}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: foamBulletB-low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 7633482791028252832}
   - component: {fileID: -944934067102651273}
   - component: {fileID: 115313366868903968}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BounceBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,7 +466,7 @@ CapsuleCollider:
     m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 127
+    m_Bits: 383
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 1

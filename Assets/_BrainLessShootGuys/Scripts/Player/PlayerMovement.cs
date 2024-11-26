@@ -212,6 +212,10 @@ public class PlayerMovement : MonoBehaviour, IHealth
         }
     }
 
+    public void PushEffect(Vector3 direction, float force)
+    {
+        rb.AddForce(direction * force, ForceMode.Impulse);
+    }
 
     #region equipements
     public void Equip(Weapon wpn, bool isBasicPistol = false)
