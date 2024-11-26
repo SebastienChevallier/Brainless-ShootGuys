@@ -59,7 +59,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Fresnelpower: 0.5
+    - Fresnelpower: 0
     - _EmissionPower: 2
     - _Hit: 0
     - _HitPower: 1
