@@ -7,9 +7,6 @@ public class LevelManager : MonoSingleton<LevelManager>
     public List<WeaponVisual> weaponVisuals;
     public List<WeaponType> weaponTypes;
     public List<ActifSpell> actifSpells;
-    [Range(0f, 1f)]
-    public float chanceSpecialBullets;
-    public List<Bullet> specialBullets;
     [Space(10)]
     public List<Weapon> weaponInMap = new();
     public List<WeaponSpawner> weaponSpawners;
@@ -32,10 +29,7 @@ public class LevelManager : MonoSingleton<LevelManager>
 
             weapon.weaponVisual = weaponVisual;
             weapon.weaponType = weaponType;
-            if (Random.Range(0,1) <= chanceSpecialBullets)
-            {
-                weapon.weaponType.bulletType = specialBullets[Random.Range(0, specialBullets.Count)];
-            }
+
             
             weapon.Init();
             //weapon.actifSpell = actifSpell;

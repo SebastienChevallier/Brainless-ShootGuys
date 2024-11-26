@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: BasicRifle
   m_EditorClassIdentifier: 
   bulletType: {fileID: 6689642571070957250, guid: 69910213d543efc4bb52e8e134a7caf2, type: 3}
+  chanceSpecialBullets: 0.25
+  specialBullets:
+  - {fileID: 115313366868903968, guid: 7385c01c5aafe9f48b7b7e5d8debd305, type: 3}
   damage: 4
   tireRateMinMax: {x: 0.05, y: 0.2}
   consumJaugeMinMax: {x: 1, y: 5}

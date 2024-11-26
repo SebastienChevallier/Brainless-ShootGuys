@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56429f0f3315f6a4ca6d2e0c2773afe3, type: 3}
   m_Name: StaticPistol
   m_EditorClassIdentifier: 
-  bulletType: {fileID: 115313366868903968, guid: 7385c01c5aafe9f48b7b7e5d8debd305, type: 3}
+  bulletType: {fileID: 6689642571070957250, guid: 69910213d543efc4bb52e8e134a7caf2, type: 3}
+  chanceSpecialBullets: 0
+  specialBullets: []
   damage: 2
   tireRateMinMax: {x: 0.175, y: 0.175}
   consumJaugeMinMax: {x: 0, y: 0}
