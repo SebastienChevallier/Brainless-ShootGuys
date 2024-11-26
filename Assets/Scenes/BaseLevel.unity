@@ -24191,8 +24191,16 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4820031599967394733, guid: 2dbba821ae9d91f47a417662100ca78d, type: 3}
+      propertyPath: chanceSpecialBullets
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820031599967394733, guid: 2dbba821ae9d91f47a417662100ca78d, type: 3}
       propertyPath: weaponTypes.Array.size
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820031599967394733, guid: 2dbba821ae9d91f47a417662100ca78d, type: 3}
+      propertyPath: specialBullets.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4820031599967394733, guid: 2dbba821ae9d91f47a417662100ca78d, type: 3}
       propertyPath: weaponSpawners.Array.size
@@ -24222,6 +24230,10 @@ PrefabInstance:
       propertyPath: 'weaponTypes.Array.data[5]'
       value: 
       objectReference: {fileID: 11400000, guid: f571d54d245c3494fa7b1c3dab0937bc, type: 2}
+    - target: {fileID: 4820031599967394733, guid: 2dbba821ae9d91f47a417662100ca78d, type: 3}
+      propertyPath: 'specialBullets.Array.data[0]'
+      value: 
+      objectReference: {fileID: 115313366868903968, guid: 7385c01c5aafe9f48b7b7e5d8debd305, type: 3}
     - target: {fileID: 4820031599967394733, guid: 2dbba821ae9d91f47a417662100ca78d, type: 3}
       propertyPath: 'weaponSpawners.Array.data[0]'
       value: 

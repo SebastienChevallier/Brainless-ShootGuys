@@ -376,7 +376,6 @@ GameObject:
   - component: {fileID: 458365560165894371}
   - component: {fileID: 8278403436544635579}
   - component: {fileID: 7633482791028252832}
-  - component: {fileID: 2100454938375498800}
   - component: {fileID: -944934067102651273}
   - component: {fileID: 115313366868903968}
   m_Layer: 0
@@ -454,27 +453,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 3
---- !u!114 &2100454938375498800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8641233284235697966}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 667a920440364b4488796b5e2c4552de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  origin: {fileID: 0}
-  layerCanTouch:
-    serializedVersion: 2
-    m_Bits: 136
-  rb: {fileID: 7633482791028252832}
-  weaponType: {fileID: 0}
-  destroyDelay: 5
-  bounceForce: 10
-  maxBounces: 3
 --- !u!136 &-944934067102651273
 CapsuleCollider:
   m_ObjectHideFlags: 0
