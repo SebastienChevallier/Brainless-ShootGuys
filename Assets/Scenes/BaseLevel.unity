@@ -24196,7 +24196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4820031599967394733, guid: 2dbba821ae9d91f47a417662100ca78d, type: 3}
       propertyPath: weaponSpawners.Array.size
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4820031599967394733, guid: 2dbba821ae9d91f47a417662100ca78d, type: 3}
       propertyPath: 'weaponTypes.Array.data[0]'
@@ -28590,6 +28590,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 88b0a1143cb64b341becda46f2ed4aac, type: 2}
   - {fileID: 2100000, guid: 3f67eef1ebc4dd346a07b944f206c451, type: 2}
   - {fileID: 2100000, guid: b2ed094debe4df9458a46fa71d98153a, type: 2}
+  playerArrowMaterial:
+  - {fileID: 2100000, guid: 45d80c559d175cc438ae8ea35c871a50, type: 2}
+  - {fileID: 2100000, guid: 6008b82079e04c04fa0824011b24211a, type: 2}
+  - {fileID: 2100000, guid: 3ebff3ad550a12847beac09fc8e9acb4, type: 2}
+  - {fileID: 2100000, guid: eb4abacd07bf069429d125f9faa14d04, type: 2}
   spawnsTransform:
   - {fileID: 358527822}
   - {fileID: 1162805747}

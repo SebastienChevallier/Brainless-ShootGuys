@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System;
-using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
@@ -18,6 +17,7 @@ public class GameManager : MonoSingleton<GameManager>
     [Header("MeshMat")]
     public List<Material> MeshMat;
     public List<Material> playerMaterial;
+    public List<Material> playerArrowMaterial;
 
     [Header("Player spawn Points")]
     [SerializeField]private List<Transform> spawnsTransform;
@@ -69,7 +69,11 @@ public class GameManager : MonoSingleton<GameManager>
         if(playerTemp.playerInput.TryGetComponent<PlayerMovement>(out PlayerMovement playerMovement))
         {
             playerMovement.skullRenderer.material = playerMaterial[_PlayerList.IndexOf(playerTemp)];
-            playerMovement.arrowRenderer.material = playerMaterial[_PlayerList.IndexOf(playerTemp)];
+
+            foreach (MeshRenderer meshArrow in playerMovement.arrowRenderers)
+            {
+                meshArrow.material = playerArrowMaterial[_PlayerList.IndexOf(playerTemp)];
+            }
             playerMovement.Init(MeshMat[_PlayerList.IndexOf(playerTemp)]);
         }
 

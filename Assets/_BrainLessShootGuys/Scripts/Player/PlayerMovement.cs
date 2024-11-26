@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
     public Animator _animator;
     public Weapon basicPistol;
     public SkinnedMeshRenderer skullRenderer;
-    public MeshRenderer arrowRenderer;
+    public List<MeshRenderer> arrowRenderers;
     public List<SkinnedMeshRenderer> OtherMeshes;
     Weapon playerBasicPistol;
 
