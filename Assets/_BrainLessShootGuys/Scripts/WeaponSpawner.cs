@@ -6,6 +6,7 @@ public class WeaponSpawner : MonoBehaviour
     public float spawnWeaponTime;
     public Vector2 firstSpawnDelayMinMax;
     public Transform weaponVisualTransformParent;
+    public ParticleSystem pickupParticles;
 
     public Weapon tempWeaponSpawn;
     bool isWeaponSpawn;
@@ -45,7 +46,8 @@ public class WeaponSpawner : MonoBehaviour
                 if (!pm.isEquipWeapon && isWeaponSpawn)
                 {
                     pm.Equip(tempWeaponSpawn);
-                    isWeaponSpawn=false;
+                    pickupParticles.Play();
+                    isWeaponSpawn =false;
                     StartCoroutine(SpawnWeapon(false));
                 }
             }
