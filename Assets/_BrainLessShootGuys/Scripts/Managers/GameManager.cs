@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoSingleton<GameManager>
 {    
     public PlayerInputManager _PlayerInputManager;
-    public List<PlayerInfo> _PlayerList;    
+    public List<PlayerInfo> _PlayerList;
     public int _NumberOfKills;
     public int _MaxNumberOfKill;
     public int _ActualRound;
