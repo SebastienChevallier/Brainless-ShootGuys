@@ -94,7 +94,8 @@ public class PlayerMovement : MonoBehaviour, IHealth
     private void FixedUpdate()
     {
         if (!_CanMove) return;
-        rb.AddForce(moveDirection * _stats._Speed * Time.deltaTime, ForceMode.Impulse);
+        //rb.AddForce(moveDirection * _stats._Speed * Time.deltaTime, ForceMode.VelocityChange);
+        rb.linearVelocity = moveDirection * _stats._Speed * Time.deltaTime;
     }
 
     public void GetMoveDirection(InputAction.CallbackContext context)

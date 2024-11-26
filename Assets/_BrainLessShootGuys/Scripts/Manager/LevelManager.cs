@@ -29,8 +29,9 @@ public class LevelManager : MonoSingleton<LevelManager>
 
             weapon.weaponVisual = weaponVisual;
             weapon.weaponType = weaponType;
-            weapon.Init();
+
             
+            weapon.Init();
             //weapon.actifSpell = actifSpell;
             
             weaponInMap.Add(weapon);

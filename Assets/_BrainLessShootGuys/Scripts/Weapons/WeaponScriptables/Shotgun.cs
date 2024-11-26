@@ -20,8 +20,13 @@ public class Shotgun : Pistol
     {
         for (int i = 0; i < bulletNumber; i++)
         {
-            Bullet bullet = Instantiate(bulletType);
-            bullet.destroyDelay = 2f;
+
+            Bullet bullet = Instantiate(
+                bulletType,
+                originWeapon.playerUse._bulletSpawnTransform.position,
+                originWeapon.playerUse._bulletSpawnTransform.rotation
+                );
+
             bullet.weaponType = this;
             bullet.origin = originWeapon.playerUse.gameObject;
             bullet.transform.position = originWeapon.playerUse._bulletSpawnTransform.position;
