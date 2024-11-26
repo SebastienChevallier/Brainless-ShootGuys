@@ -28,6 +28,10 @@ public class WeaponType : ScriptableObject
     public virtual void ConsumJauge()
     {
         jauge -= consumJauge;
+
+        if (consumJauge > 0) originWeapon.playerUse._weaponGaugeHandler.UpdateUISlider(jauge);
+        else originWeapon.playerUse._weaponGaugeHandler.UpdateUISlider(0);
+
         if (jauge <= 0)
         {
             originWeapon.playerUse.UnEquip();

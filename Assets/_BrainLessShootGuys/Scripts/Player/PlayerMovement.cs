@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
     Weapon playerBasicPistol;
 
     [Header("UIRefs")]
-    public UIGaugeHandler _gaugeHandler;
+    public UIGaugeHandler _healthGaugeHandler, _weaponGaugeHandler;
 
     private CameraShake ShakeComp;
     private bool canBeHurt = true;
@@ -56,6 +56,8 @@ public class PlayerMovement : MonoBehaviour, IHealth
         
         isEquipWeapon = false;
         canBeHurt = true;
+
+        _weaponGaugeHandler.UpdateUISlider(0, true);
 
         //ONLY TEST ! NEED TO BE REMOVE
 /*        _weapon.weaponType = Instantiate(_weapon.weaponType);
@@ -171,7 +173,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
             _stats._CurrentHealth -= dmg;
             ShakeComp.ShakeCamera();
             StartCoroutine(HitMaterial());
-            _gaugeHandler.UpdateUISlider(_stats._CurrentHealth);
+            _healthGaugeHandler.UpdateUISlider(_stats._CurrentHealth);
         }
         else
         {
@@ -183,7 +185,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
 
             GameManager.Instance.SpawnPlayer(GetComponent<PlayerInput>());
             _stats.Init();
-            _gaugeHandler.UpdateUISlider(_stats._CurrentHealth);
+            _healthGaugeHandler.UpdateUISlider(_stats._CurrentHealth);
             //Fin de la manche
             //Destroy(gameObject);
         }
@@ -219,12 +221,16 @@ public class PlayerMovement : MonoBehaviour, IHealth
         _weapon.transform.localScale = Vector3.one;
 
         if (isBasicPistol)
+        {
             playerBasicPistol.gameObject.SetActive(true);
-        else 
+            _weaponGaugeHandler.UpdateUISlider(0);
+        }
+        else
         {
             _weapon.Init();
             isEquipWeapon = true;
             playerBasicPistol.gameObject.SetActive(false);
+            _weaponGaugeHandler.UpdateUISlider(100);
         }
     }
 
@@ -234,6 +240,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
 
         Equip(playerBasicPistol, true);
         isEquipWeapon = false;
+        _weaponGaugeHandler.UpdateUISlider(0);
     }
 
     public void InstantiateBasicPistol()

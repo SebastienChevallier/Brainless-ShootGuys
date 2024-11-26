@@ -44,7 +44,7 @@ public class WeaponSpawner : MonoBehaviour
             {
                 if (!pm.isEquipWeapon && isWeaponSpawn)
                 {
-                    pm.Equip(tempWeaponSpawn);
+                    pm.Equip(tempWeaponSpawn, false);
                     isWeaponSpawn=false;
                     StartCoroutine(SpawnWeapon(false));
                 }
