@@ -494,4 +494,4 @@ MonoBehaviour:
     m_Bits: 136
   rb: {fileID: 7633482791028252832}
   weaponType: {fileID: 0}
-  destroyDelay: 5
+  destroyDelay: 3
