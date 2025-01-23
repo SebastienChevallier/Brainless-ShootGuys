@@ -5419,35 +5419,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8509848583591780493, guid: 6481bba4ecfa73c42b15060b21cf66b4, type: 3}
       propertyPath: positions.Array.data[0].x
-      value: -800
+      value: -780
       objectReference: {fileID: 0}
     - target: {fileID: 8509848583591780493, guid: 6481bba4ecfa73c42b15060b21cf66b4, type: 3}
       propertyPath: positions.Array.data[0].y
-      value: -450
+      value: 470
       objectReference: {fileID: 0}
     - target: {fileID: 8509848583591780493, guid: 6481bba4ecfa73c42b15060b21cf66b4, type: 3}
       propertyPath: positions.Array.data[1].x
-      value: 800
+      value: 780
       objectReference: {fileID: 0}
     - target: {fileID: 8509848583591780493, guid: 6481bba4ecfa73c42b15060b21cf66b4, type: 3}
       propertyPath: positions.Array.data[1].y
-      value: -450
+      value: 470
       objectReference: {fileID: 0}
     - target: {fileID: 8509848583591780493, guid: 6481bba4ecfa73c42b15060b21cf66b4, type: 3}
       propertyPath: positions.Array.data[2].x
-      value: 800
+      value: -780
       objectReference: {fileID: 0}
     - target: {fileID: 8509848583591780493, guid: 6481bba4ecfa73c42b15060b21cf66b4, type: 3}
       propertyPath: positions.Array.data[2].y
-      value: 450
+      value: -490
       objectReference: {fileID: 0}
     - target: {fileID: 8509848583591780493, guid: 6481bba4ecfa73c42b15060b21cf66b4, type: 3}
       propertyPath: positions.Array.data[3].x
-      value: -800
+      value: 780
       objectReference: {fileID: 0}
     - target: {fileID: 8509848583591780493, guid: 6481bba4ecfa73c42b15060b21cf66b4, type: 3}
       propertyPath: positions.Array.data[3].y
-      value: 450
+      value: -490
       objectReference: {fileID: 0}
     - target: {fileID: 8769066302886922317, guid: 6481bba4ecfa73c42b15060b21cf66b4, type: 3}
       propertyPath: m_Name
